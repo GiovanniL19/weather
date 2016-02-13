@@ -8,12 +8,24 @@
 		color:#333;
     background: white;
     padding: 1em;
+    box-shadow: 1px 6px 11px rgba(49, 49, 49, 0.2);
+		.back{
+	    color: #999 !important;
+	    font-size: 10px !important;
+	    margin-top: -9px;
+	    position: absolute;
+	    margin-left: -3px;
+		}
 		a{
-			color:#68C5FF;
+			color:#555;
 			cursor:pointer;
+			font-weight:200;
 		}
 		small{
 			color:#333;
+		}
+		h3, h4{
+			font-weight:200;
 		}
 		.city{
 			border-radius:0;
@@ -23,12 +35,9 @@
 			-moz-box-shadow: none !important;
 			box-shadow: none !important;
 			margin:1em;
-			border:1px solid #ccc;
 			font-size:1em;
 			color:#888;
-			width:80%;
 			margin:0 auto;
-			margin-top:1em;
 		}
 	}
 }

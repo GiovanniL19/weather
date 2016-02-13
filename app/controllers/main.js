@@ -6,9 +6,10 @@ default Ember.Controller.extend({
 	
 	city: '',
 	weatherFound: false,
-	weather: null,
+	weather: {
+		background: 'https://static.pexels.com/photos/8605/nature-sky-sunset-sun.jpg'
+	},
 	loading: false,
-	background: 'https://static.pexels.com/photos/9574/pexels-photo.jpeg',
 	
 	getWeather: function(url){
 		let controller = this;
@@ -18,34 +19,39 @@ default Ember.Controller.extend({
 			type: 'GET',
 			accepts: 'application/json',
 			success: function(data) {
+				var weather = data;
+				weather.icon = '';
+				weather.background = 'https://static.pexels.com/photos/9574/pexels-photo.jpeg';
 				switch(data.weather[0].main){
 					case 'Sun':
-						controller.set('icon', 'sun-o');
-						controller.set('background', 'http://susanstilwell.com/wp-content/uploads/2011/10/dreamstimefree_20823097.jpg');
+						weather.icon = 'sun-o'
+						weather.background ='https://static.pexels.com/photos/5055/sea-sky-beach-holiday.jpeg';
 						break;
 					case 'Clear':
-						controller.set('icon', 'sun-o');
-						controller.set('background', 'http://www.fusebox.coffs.com.au/files/clear%20sky%20background.JPG');
+						weather.icon = 'sun-o';
+						weather.background ='http://www.fusebox.coffs.com.au/files/clear%20sky%20background.JPG';
 						break;
 					case 'Rain':
-						controller.set('background', 'http://newtopwallpapers.com/wp-content/uploads/2013/04/Rain-Falling-on-Trees.jpeg');
-						controller.set('icon', 'fa-tint');
+						weather.background ='https://static.pexels.com/photos/17739/pexels-photo.jpg';
+						weather.icon = 'fa-tint';
 						break;
 					case 'Clouds':
-						controller.set('background', 'http://vapeaboutit.com/wp-content/uploads/2015/05/Clouds-over-the-Tasman-10.jpg');
-						controller.set('icon', 'cloud');
+						weather.background ='https://static.pexels.com/photos/7167/clouds.jpg';
+						weather.icon = 'cloud';
 						break;
 					case 'Snow':
-						controller.set('background', 'http://cdn1.theodysseyonline.com/files/2016/01/09/635879112155223228-319755513_635861833670816810507191518_6670-perfect-snow-1920x1080-nature-wallpaper.jpg');
-						controller.set('icon', 'circle-thin');
+						weather.background ='https://static.pexels.com/photos/1127/cold-snow-landscape-nature.jpg';
+						weather.icon = 'circle-thin';
 						break;
 					case 'Storm':
-						controller.set('background', 'http://7-themes.com/data_images/out/25/6852482-storm.jpg');
-						controller.set('icon', 'bolt');
+						weather.background ='https://static.pexels.com/photos/799/city-lights-night-clouds.jpg';
+						weather.icon = 'bolt';
 						break;
 				}
-				controller.set('weather', data);
+				controller.set('weather', weather);
 				controller.set('weatherFound', true);
+				localStorage.clear();
+				localStorage.setItem('locationURL', url);
 			},
 			error: function(err) {
 				console.log(err);
@@ -54,6 +60,13 @@ default Ember.Controller.extend({
 	},
 	
 	actions: {
+		back: function(){
+			this.set('weatherFound', false);
+			this.set('weather', {
+				background: 'https://static.pexels.com/photos/8605/nature-sky-sunset-sun.jpg'
+			});
+			localStorage.clear();
+		},
 		cityInput: function() {
 			var url = "http://api.openweathermap.org/data/2.5/weather?q=" + this.get('city') + "&APPID=e18a7372402f4236aceae23897fa1af9&units=metric";
 			this.getWeather(url);

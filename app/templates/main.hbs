@@ -1,20 +1,30 @@
-<div class="weather-background" style="background:url({{background}}) fixed no-repeat; background-size:cover;">
-	<div class="weather-content col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 center text-center">
-		{{#if weatherFound}}
-			<h2>{{fa-icon icon=icon}}</h2>
+<div class="weather-background" style="background:url({{weather.background}}) no-repeat; background-size:cover;">
+	{{#if weatherFound}}
+		<div class="weather-content col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 center text-center">
+			<small class="pull-left"><a class="back" {{action 'back'}}>New Location</a></small>
+			<h2>{{fa-icon icon=weather.icon}}</h2>
 			<h3>{{weather.name}}</h3>
 			{{#each type in weather.weather}}
 				<h4>{{type.main}}<br><small>{{type.description}}</small></h4>
 			{{/each}}
-		{{else}}
-			{{#unless loading}}
+		</div>
+	{{else}}
+		{{#unless loading}}
+			<div class="weather-content col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 center text-center">
+				<h2>{{fa-icon icon="map-marker"}}</h2>
 				<h3>Where are you?</h3>	
-				<a {{action 'currentLocation'}}>Use current location</a> or enter city: {{input class="form-control city" value=city placeholder="London..." insert-newline='cityInput'}}	
-			{{else}}
+				<a {{action 'currentLocation'}}>{{fa-icon icon="map-marker"}} Use current location</a>
+			</div>
+			<div class="weather-content col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 center text-center" style="margin-top:0.5em">
+				{{input class="form-control city" value=city placeholder="London..." insert-newline='cityInput'}}	
+			</div>
+		{{else}}
+			<div class="weather-content col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 center text-center">
 				<h3>{{fa-icon icon="circle-o-notch" spin=true}}</h3>
-			{{/unless}}
-		{{/if}}
-	</div>
+			</div>
+		{{/unless}}
+	{{/if}}
+	
 	
 	{{#if weatherFound}}
 		<div class="weather-content col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 center text-center">

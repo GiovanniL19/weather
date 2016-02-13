@@ -1,0 +1,25 @@
+@import "bootstrap";
+
+
+.weather-background{
+	background:url('https://static.pexels.com/photos/9574/pexels-photo.jpeg') fixed no-repeat;
+	background-size:cover;
+	min-height:100vh;
+	.weather-content{
+		margin-top:20%;
+		color:white;
+		a{
+			color:white;
+			cursor:pointer;
+		}
+		p{
+			font-size:14em;
+		}
+		.city{
+			border:none;
+			font-size:1.4em;
+			color:#888;
+			height:2em;
+		}
+	}
+}

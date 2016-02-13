@@ -1,7 +1,30 @@
-<div class="weather-background">
-	<div class="weather-content col-md-4 col-md-offset-4 center text-center">
-		<h3>Where are you?</h3>
-		
-		<a>Use current location</a> or enter city: {{input class="form-control city" value=city}}
+<div class="weather-background" style="background:url({{background}}) fixed no-repeat; background-size:cover;">
+	<div class="weather-content col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 center text-center">
+		{{#if weatherFound}}
+			<h2>{{fa-icon icon=icon}}</h2>
+			<h3>{{weather.name}}</h3>
+			{{#each type in weather.weather}}
+				<h4>{{type.main}}<br><small>{{type.description}}</small></h4>
+			{{/each}}
+		{{else}}
+			{{#unless loading}}
+				<h3>Where are you?</h3>	
+				<a {{action 'currentLocation'}}>Use current location</a> or enter city: {{input class="form-control city" value=city placeholder="London..." insert-newline='cityInput'}}	
+			{{else}}
+				<h3>{{fa-icon icon="circle-o-notch" spin=true}}</h3>
+			{{/unless}}
+		{{/if}}
 	</div>
+	
+	{{#if weatherFound}}
+		<div class="weather-content col-xs-12 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 center text-center">
+			<small>More Details</small>
+			<br><hr>
+			<p>Feels like {{weather.main.temp}} &#8451;</p><br>
+			<p>Humidity {{weather.main.humidity}}%</p><br>
+			<p>Wind speeds are {{weather.wind.speed}} Mph</p><br>
+			<p>Wind direction is {{weather.wind.deg}} degrees</p><br>
+			<p>Cloudiness {{weather.clouds.all}}%</p><br>
+		</div>
+	{{/if}}
 </div>

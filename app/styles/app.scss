@@ -2,24 +2,33 @@
 
 
 .weather-background{
-	background:url('https://static.pexels.com/photos/9574/pexels-photo.jpeg') fixed no-repeat;
-	background-size:cover;
 	min-height:100vh;
 	.weather-content{
-		margin-top:20%;
-		color:white;
+		margin-top:5em;
+		color:#333;
+    background: white;
+    padding: 1em;
 		a{
-			color:white;
+			color:#68C5FF;
 			cursor:pointer;
 		}
-		p{
-			font-size:14em;
+		small{
+			color:#333;
 		}
 		.city{
-			border:none;
-			font-size:1.4em;
+			border-radius:0;
+			outline: none;
+			border: none;
+			-webkit-box-shadow: none !important;
+			-moz-box-shadow: none !important;
+			box-shadow: none !important;
+			margin:1em;
+			border:1px solid #ccc;
+			font-size:1em;
 			color:#888;
-			height:2em;
+			width:80%;
+			margin:0 auto;
+			margin-top:1em;
 		}
 	}
 }

@@ -1,7 +1,9 @@
 # Weather
 
 This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+A short introduction of this app could easily go here. 
+
+Weather is a beautiful open source weather app for anyone to work on. It uses the [openweathermap] (http://openweathermap.org/api) API to get weather information, bootstrap. All this on top of the ember framework.
 
 ## Prerequisites
 
